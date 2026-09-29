@@ -1,0 +1,34 @@
+<section class="success" aria-labelledby="success-title" aria-live="polite">
+  <div class="success-mark" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.4 3.4 7.6-8" /></svg>
+  </div>
+  <p class="eyebrow">{{ 'success.eyebrow' | translate }}</p>
+  <h2 id="success-title">{{ 'success.title' | translate }}</h2>
+  <p class="summary">{{ 'success.summary' | translate }}</p>
+
+  <div class="reference">
+    <span>{{ 'success.reference' | translate }}</span>
+    <div>
+      <strong>{{ submission.referenceNumber }}</strong>
+      <button type="button" (click)="copyReference()" [attr.aria-label]="'success.copy' | translate">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8h11v11H8zM5 16H4V5h11v1" /></svg>
+      </button>
+    </div>
+    @if (copied) { <small>{{ 'success.copied' | translate }}</small> }
+  </div>
+
+  <dl>
+    <div>
+      <dt>{{ 'success.status' | translate }}</dt>
+      <dd><span></span>{{ 'success.submitted' | translate }}</dd>
+    </div>
+    <div>
+      <dt>{{ 'success.created' | translate }}</dt>
+      <dd>{{ submission.createdAt | date:'mediumDate' }}</dd>
+    </div>
+  </dl>
+
+  <button class="another" type="button" (click)="createAnother.emit()">
+    {{ 'success.another' | translate }}
+  </button>
+</section>

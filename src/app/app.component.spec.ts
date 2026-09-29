@@ -1,0 +1,41 @@
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+      providers: [provideRouter([]), provideTranslateService()],
+    }).compileComponents();
+  });
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it('should have the Improvement Hub title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('Improvement Hub');
+  });
+
+  it('should render the application route outlet', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('router-outlet')).not.toBeNull();
+  });
+
+  it('should initialize translations without a native service', () => {
+    spyOnProperty(navigator, 'language', 'get').and.returnValue('es-ES');
+    const translate = TestBed.inject(TranslateService);
+    const useLanguage = spyOn(translate, 'use').and.callThrough();
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    expect(useLanguage).toHaveBeenCalledWith('es');
+  });
+});

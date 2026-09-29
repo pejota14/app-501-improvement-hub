@@ -1,0 +1,38 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: var(--main-width);
+  min-height: var(--main-height);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  --sat: env(safe-area-inset-top);
+  --sar: env(safe-area-inset-right);
+  --sab: env(safe-area-inset-bottom);
+  --sal: env(safe-area-inset-left);
+  --main-color: #1388A6;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --main-height: 100dvh;
+    --main-width: 100dvw;
+  }
+}
+
+@supports not (height: 100dvh) {
+  :root {
+    --main-height: 100vh;
+    --main-width: 100vw;
+  }
+}

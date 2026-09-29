@@ -1,0 +1,86 @@
+{
+  "app": {
+    "name": "Improvement Hub"
+  },
+  "intro": {
+    "eyebrow": "Ideas into action",
+    "title": "Make the next improvement count.",
+    "summary": "Share a clear, structured proposal with the people who can move it forward. A few thoughtful details are all it takes.",
+    "promiseTitle": "A focused, reliable handoff",
+    "promiseText": "Your submission receives a unique reference so you can keep a dependable record."
+  },
+  "form": {
+    "step": "Proposal details",
+    "title": "Share your improvement",
+    "requiredNote": "Every field is required. Your contact details help the team follow up if needed.",
+    "name": {
+      "label": "Your name",
+      "placeholder": "e.g. Alex Morgan"
+    },
+    "email": {
+      "label": "Email address",
+      "placeholder": "alex@company.com"
+    },
+    "area": {
+      "label": "Area",
+      "placeholder": "Choose the most relevant area"
+    },
+    "proposalTitle": {
+      "label": "Proposal title",
+      "placeholder": "Summarize the idea in one line"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "What could be improved, and what would a better outcome look like?"
+    },
+    "impact": {
+      "label": "Expected impact",
+      "hint": "Choose the level that best reflects the potential benefit."
+    },
+    "submit": "Submit proposal",
+    "submitting": "Submitting securely..."
+  },
+  "areas": {
+    "engineering": "Engineering",
+    "product": "Product",
+    "operations": "Operations",
+    "other": "Other"
+  },
+  "impacts": {
+    "low": {
+      "label": "Low",
+      "hint": "Helpful refinement"
+    },
+    "medium": {
+      "label": "Medium",
+      "hint": "Meaningful gain"
+    },
+    "high": {
+      "label": "High",
+      "hint": "Major improvement"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "selectArea": "Choose an area for this proposal.",
+    "selectImpact": "Choose the expected impact.",
+    "titleLength": "Keep the title to 100 characters or fewer."
+  },
+  "error": {
+    "title": "Your proposal was not sent.",
+    "message": "Check your connection and try again. Your entries are still here."
+  },
+  "success": {
+    "eyebrow": "Proposal received",
+    "title": "Thank you for speaking up.",
+    "summary": "Your improvement is now recorded and ready for review. Save the reference below for your records.",
+    "reference": "Reference number",
+    "copy": "Copy reference number",
+    "copied": "Copied",
+    "status": "Status",
+    "submitted": "Submitted",
+    "created": "Created",
+    "another": "Submit another proposal"
+  }
+}
