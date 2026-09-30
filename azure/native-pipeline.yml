@@ -1,0 +1,87 @@
+name: e2e-native-$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+  - name: environment
+    displayName: Local test environment
+    type: string
+    default: dev
+    values:
+      - dev
+      - prod
+  - name: tags
+    displayName: Cucumber tags (all runs the full suite)
+    type: string
+    default: all
+  - name: viewport
+    displayName: Browser viewport
+    type: string
+    default: desktop
+    values:
+      - desktop
+      - mobile
+
+pool:
+  vmImage: ubuntu-22.04
+
+jobs:
+  - job: NativeE2E
+    displayName: Native ephemeral test environment
+    timeoutInMinutes: 30
+    steps:
+      - checkout: self
+        clean: true
+
+      - bash: mkdir -p e2e/reports
+        displayName: Prepare report directory
+
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '22.x'
+        displayName: Use Node.js 22
+
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: '3.12'
+          addToPath: true
+        displayName: Use Python 3.12
+
+      - bash: |
+          set -euo pipefail
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+        displayName: Install Node dependencies and Chromium
+
+      - bash: |
+          set -euo pipefail
+          args=(--env "$TEST_ENVIRONMENT")
+          if [[ "$TEST_TAGS" != "all" ]]; then
+            args+=(--tags "$TEST_TAGS")
+          fi
+          npm run test:e2e -- "${args[@]}"
+        displayName: Start app, run Cucumber, and stop app
+        env:
+          PYTHON_BIN: python
+          TEST_ENVIRONMENT: ${{ parameters.environment }}
+          TEST_TAGS: ${{ parameters.tags }}
+          E2E_VIEWPORT: ${{ parameters.viewport }}
+
+      - task: PublishTestResults@2
+        displayName: Publish Cucumber test results
+        condition: always()
+        inputs:
+          testResultsFormat: JUnit
+          searchFolder: '$(Build.SourcesDirectory)/e2e/reports'
+          testResultsFiles: junit.xml
+          testRunTitle: 'Cucumber native (${{ parameters.environment }}, ${{ parameters.viewport }})'
+          failTaskOnFailedTests: true
+          failTaskOnMissingResultsFile: true
+
+      - task: PublishPipelineArtifact@1
+        displayName: Publish HTML reports and failure traces
+        condition: always()
+        inputs:
+          targetPath: '$(Build.SourcesDirectory)/e2e/reports'
+          artifact: 'e2e-native-$(Build.BuildId)'

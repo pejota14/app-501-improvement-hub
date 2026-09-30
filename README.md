@@ -10,6 +10,10 @@ Use Node.js 22.15+ (22.x), Python 3.11+, and macOS or Linux.
 For an alternative to installing dependencies on your machine, see
 [Docker fallback](#docker-fallback). Native commands remain unchanged.
 
+To run the E2E suite in Azure DevOps, see the
+[Azure Pipelines example](azure/README.md) for a native job with a
+temporary test environment and published reports.
+
 ```bash
 npm ci
 npm run e2e:install

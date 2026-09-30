@@ -56,6 +56,10 @@ visible names deliberately follow that UI contract.
 
 ## Run
 
+For Azure DevOps hosted runs, use the native
+[Azure Pipelines example](../azure/README.md). It starts a temporary application
+inside the job and publishes the same reports as local runs.
+
 After the setup in the root README:
 
 ```bash
