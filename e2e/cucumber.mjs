@@ -11,7 +11,7 @@ export default {
   paths: ['e2e/features/**/*.feature'],
   import: ['e2e/support/world.mjs', 'e2e/steps/**/*.mjs'],
   format: [
-    'progress',
+    'pretty',
     `html:${reportDirectory}/cucumber.html`,
     `json:${reportDirectory}/cucumber.json`,
     `junit:${reportDirectory}/junit.xml`,

@@ -19,6 +19,7 @@ test('report config shares output paths and identifies the selected environment'
         assert.equal(config.worldParameters.environment, environment);
         assert.equal(config.worldParameters.reportDirectory, 'e2e/reports');
         assert.deepEqual(config.formatOptions.report, { environment, runtime: container === '1' ? 'Docker' : 'Native' });
+        assert.ok(config.format.includes('pretty'));
         assert.ok(config.format.includes('./e2e/report-index.mjs:e2e/reports/index.html'));
         assert.ok(config.format.includes('html:e2e/reports/cucumber.html'));
         assert.ok(!config.format.some((format) => /reports\/(dev|prod)\//.test(format)));
